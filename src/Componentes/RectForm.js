@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, InputNumber, Button, Row, Col } from 'antd';
+import './Form.css';
 var FormItem = Form.Item;
 
 export default class RectForm extends Component {
@@ -20,7 +21,7 @@ export default class RectForm extends Component {
            <Form onSubmit={(evnt) => this.sayHi(evnt)}>
             <Row>
                 <Col span={4}>
-                    <FormItem label="p">
+                    <FormItem label="ρ">
                         <InputNumber min={1} max={10} value={5}/>
                         <span className="ant-form-text"></span>
                     </FormItem>
@@ -43,8 +44,22 @@ export default class RectForm extends Component {
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
+            </Row>
+            <Row>
                 <Col span={4}>
                     <FormItem label="Pr">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="k">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="l">
                         <InputNumber min={1} max={10} value={5}/>
                         <span className="ant-form-text"></span>
                     </FormItem>
@@ -71,6 +86,58 @@ export default class RectForm extends Component {
                     </FormItem>
                 </Col>
             </Row>
+            <Row>
+                <Col span={4}>
+                    <FormItem label="Cpglicol">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="ΔTglicol">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="ρglicol">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="Q(Caudal)">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+            </Row>
+            <Row>
+                <Col span={4}>
+                    <FormItem label="E1">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="E2">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="m">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+                <Col span={4}>
+                    <FormItem label="Cp">
+                        <InputNumber min={1} max={10} value={5}/>
+                        <span className="ant-form-text"></span>
+                    </FormItem>
+                </Col>
+            </Row> 
 
             <FormItem wrapperCol={{ span: 12, offset: 12 }}>
                 <Button type="primary" htmlType="submit">
