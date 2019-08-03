@@ -124,6 +124,12 @@ export default class RectTable extends Component {
             editable: true,
           },
           {
+            title: 'dT/dt',
+            dataIndex: 'dT',
+            width: '4%',
+            editable: true,
+          },
+          {
             title: 'Accion',
             dataIndex: '',
             width: '4%',
