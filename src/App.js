@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Tabs, Button, Tag, PageHeader } from 'antd';
+import Rectificador from './Componentes/Rectificador';
+import 'antd/dist/antd.css';
 import './App.css';
+const TabPane = Tabs.TabPane;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <PageHeader className="App"
+        onBack={() => window.history.back()}
+        title="Simulación y modelo matematico para la generacion de calor de un transistor IGBT"
+        subTitle="Transferencia de calor"
+        tags={<Tag color="blue">Simulación</Tag>}
+        
+        footer={
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="Rectificador" key="1" >
+              <Rectificador></Rectificador>
+            </TabPane>
+            <TabPane tab="Inversor" key="2" >
+              DOS MODOS EN INVERSOR, MANUAL LISTADO
+            </TabPane>
+            <TabPane tab="Resistencia" key="3">
+              DOS MODOS, MANUAL Y LISTADO
+            </TabPane>
+          </Tabs>
+        }
+      >
+      <div className="wrap">
+        <div className="content padding"></div>
+        <div className="extraContent"></div>
+      </div>
+    </PageHeader>
+    );
+  }
 }
 
 export default App;
