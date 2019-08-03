@@ -39,7 +39,9 @@ export default class Rectificador extends Component {
                ></RectForm>
                
                <Divider>Tabla de datos</Divider>
-               <RectTable></RectTable>
+               <RectTable
+                {...this.state}
+               ></RectTable>
 
                <Divider>Simulación actual</Divider>
                AQUI SE MUESTRA LA GRAFICA
