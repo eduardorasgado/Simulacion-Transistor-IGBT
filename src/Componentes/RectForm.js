@@ -8,60 +8,122 @@ export default class RectForm extends Component {
         super(props);
 
         this.state = {
-            data: []
+            data: {
+                p: 0,
+                v: 0,
+                D: 0,
+                miu: 0,
+
+                Pr: 0.722,
+                k: 0.027,
+                l: 0.11,
+
+                A: 0,
+                Ts: 0,
+                Tinf: 0,
+
+                CpGlicol: 0,
+                deltaTGlicol: 0,
+                pGlicol: 0,
+                Qcaudal: 0,
+
+                E1: 0,
+                E2: 0,
+                m: 0,
+                Cp: 0
+
+            }
         }
+
+        this.saveData = this.saveData.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
 
-    sayHi(event) {
+    saveData(event) {
         event.preventDefault();
-        alert("Se han guardado los datos");
+        console.log(this.state.data);
     }
+
+    updateData(target, value) {
+        var dataUpdate = this.state.data;
+        dataUpdate[target] = value;
+        this.setState({
+            data: dataUpdate
+        })
+    }
+    
     render() {
         return (
-           <Form onSubmit={(evnt) => this.sayHi(evnt)}>
+           <Form onSubmit={(evnt) => this.saveData(evnt)}>
             <Row>
                 <Col span={4}>
                     <FormItem label="ρ">
-                        <InputNumber min={1} max={10} value={5}/>
-                        <span className="ant-form-text"></span>
+                        <InputNumber 
+                            name="p"
+                            value={this.state.data.p}
+                            onChange={(value) => this.updateData("p", value)}
+                            />
                     </FormItem>
                 </Col>  
                 <Col span={4}>
                     <FormItem label="v">
-                        <InputNumber min={1} max={10} value={5}/>
-                        <span className="ant-form-text"></span>
+                        <InputNumber
+                            name="v"
+                            value={this.state.data.v}
+                            onChange={(value) => this.updateData("v", value)}
+                            />
+                        
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="D">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber 
+                            name="D"
+                            value={this.state.data.D}
+                            onChange={(value) => this.updateData("D", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col> 
                 <Col span={4}>
                     <FormItem label="µ">
-                        <InputNumber min={1} max={10} value={5}/>
-                        <span className="ant-form-text"></span>
+                        <InputNumber
+                            name="miu"
+                            value={this.state.data.miu}
+                            onChange={(value) => this.updateData("miu", value)}
+                        />
+                        
                     </FormItem>
                 </Col>
             </Row>
             <Row>
                 <Col span={4}>
                     <FormItem label="Pr">
-                        <InputNumber min={1} max={10} value={5}/>
-                        <span className="ant-form-text"></span>
+                        <InputNumber 
+                            name="Pr"
+                            value={this.state.data.Pr}
+                            onChange={(value) => this.updateData("Pr", value)}
+                        />
+                        
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="k">
-                        <InputNumber min={1} max={10} value={5}/>
-                        <span className="ant-form-text"></span>
+                        <InputNumber
+                            name="k"
+                            value={this.state.data.k}
+                            onChange={(value) => this.updateData("k", value)}
+                        />
+                    
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="l">
-                        <InputNumber min={1} max={10} value={5}/>
-                        <span className="ant-form-text"></span>
+                        <InputNumber
+                            name="l"
+                            value={this.state.data.l}
+                            onChange={(value) => this.updateData("l", value)}
+                        />
                     </FormItem>
                 </Col>
             </Row>
@@ -69,19 +131,31 @@ export default class RectForm extends Component {
             <Row>
                 <Col span={4}>
                     <FormItem label="A">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="A"
+                            value={this.state.data.A}
+                            onChange={(value) => this.updateData("A", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="Ts">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="Ts"
+                            value={this.state.data.Ts}
+                            onChange={(value) => this.updateData("Ts", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="T(infinito)">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="Tinf"
+                            value={this.state.data.Tinf}
+                            onChange={(value) => this.updateData("Tinf", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
@@ -89,25 +163,40 @@ export default class RectForm extends Component {
             <Row>
                 <Col span={4}>
                     <FormItem label="Cpglicol">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="CpGlicol"
+                            value={this.state.data.CpGlicol}
+                            onChange={(value) => this.updateData("CpGlicol", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="ΔTglicol">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="deltaTGlicol"
+                            value={this.state.data.deltaTGlicol}
+                            onChange={(value) => this.updateData("deltaTGlicol", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="ρglicol">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="pGlicol"
+                            value={this.state.data.pGlicol}
+                            onChange={(value) => this.updateData("pGlicol", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="Q(Caudal)">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber name="Qcaudal"
+                            value={this.state.data.Qcaudal}
+                            onChange={(value) => this.updateData("Qcaudal", value)}
+                            />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
@@ -115,25 +204,40 @@ export default class RectForm extends Component {
             <Row>
                 <Col span={4}>
                     <FormItem label="E1">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="E1"
+                            value={this.state.data.E1}
+                            onChange={(value) => this.updateData("E1", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="E2">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber 
+                            name="E2"
+                            value={this.state.data.E2}
+                            onChange={(value) => this.updateData("E2", value)}/>
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="m">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber 
+                            name="m"
+                            value={this.state.data.m}
+                            onChange={(value) => this.updateData("m", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>
                 <Col span={4}>
                     <FormItem label="Cp">
-                        <InputNumber min={1} max={10} value={5}/>
+                        <InputNumber
+                            name="Cp"
+                            value={this.state.data.Cp}
+                            onChange={(value) => this.updateData("Cp", value)}
+                        />
                         <span className="ant-form-text"></span>
                     </FormItem>
                 </Col>

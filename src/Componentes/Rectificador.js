@@ -10,15 +10,23 @@ export default class Rectificador extends Component {
         super(props);
 
         this.state = {
-            dato1: ''
+            data: []
         };
+
+        this.setNewData = this.setNewData.bind(this);
+    }
+
+    setNewData(data) {
+        alert("new data added");
     }
     render() {
         return (
             <div>
                <h1>Simulación de rectificador</h1>
                <Divider>Ingreso de nuevos datos</Divider>
-               <RectForm></RectForm>
+               <RectForm
+                setNewData={this.setNewData}
+               ></RectForm>
                
                <Divider>Tabla de datos</Divider>
                <RectTable></RectTable>
