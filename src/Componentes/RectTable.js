@@ -124,6 +124,42 @@ export default class RectTable extends Component {
             editable: true,
           },
           {
+            title: 'Re',
+            dataIndex: 're',
+            width: '4%',
+            editable: true,
+          },
+          {
+            title: 'Nu',
+            dataIndex: 'nu',
+            width: '4%',
+            editable: true,
+          },
+          {
+            title: 'h',
+            dataIndex: 'h',
+            width: '4%',
+            editable: true,
+          },
+          {
+            title: '(Qigbt)',
+            dataIndex: 'Qigbt',
+            width: '4%',
+            editable: true,
+          },
+          {
+            title: 'mGlicol',
+            dataIndex: 'mGlicol',
+            width: '4%',
+            editable: true,
+          },
+          {
+            title: 'Qdisipador',
+            dataIndex: 'Qdis',
+            width: '4%',
+            editable: true,
+          },
+          {
             title: 'dT/dt',
             dataIndex: 'dT',
             width: '4%',
@@ -144,7 +180,7 @@ export default class RectTable extends Component {
     render() {
         return (
             <div>
-                <Table columns={this.columns} dataSource={this.props.data} />
+                <Table columns={this.columns} dataSource={this.props.data} scroll={{ x: 1800 }}/>
             </div>
         )
     }

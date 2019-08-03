@@ -76,20 +76,52 @@ export default class RectForm extends Component {
                 reRes,
                 this.state.data.Pr
             );
-            let hRes = computeH();
-            let qRes = computeQigbt();
-            let mgRes = computeMGlicol();
-            let qdisRes = computeQDisipador();
-            let dtRes = computedT();
+            let hRes = computeH(
+                this.state.data.k,
+                this.state.data.l,
+                nuRes,
+
+            );
+            let qRes = computeQigbt(
+                this.state.data.A,
+                hRes,
+                this.state.data.Ts,
+                this.state.data.Tinf
+            );
+            let mgRes = computeMGlicol(
+                this.state.data.pGlicol,
+                this.state.data.Qcaudal
+            );
+            let qdisRes = computeQDisipador(
+                mgRes,
+                this.state.data.CpGlicol,
+                this.state.data.deltaTGlicol
+            );
+            let dtRes = computedT(
+                this.state.data.E1,
+                this.state.data.E2,
+                qdisRes,
+                this.state.data.Qigbt,
+                this.state.data.m,
+                this.state.data.Cp
+            );
 
             let newData = this.state.data;
-            newData.re = reRes;
-            newData.nu = nuRes;
-            newData.h = hRes;
-            newData.Qigbt = qRes;
-            newData.mGlicol = mgRes;
-            newData.Qdis = qdisRes;
-            newData.dT = dtRes;
+            if(reRes !== null) {
+                newData.re = reRes.toFixed(2);
+            } else {
+                newData.re = reRes;
+            }
+            newData.nu = nuRes.toFixed(2);
+            newData.h = hRes.toFixed(2);
+            newData.Qigbt = qRes.toFixed(2);
+            newData.mGlicol = mgRes.toFixed(2);
+            newData.Qdis = qdisRes.toFixed(2);
+            if(dtRes !== null) {
+                newData.dT = dtRes.toFixed(2);
+            } else {
+                newData.dT = dtRes;
+            }
             this.setState({
                 data: newData
             });

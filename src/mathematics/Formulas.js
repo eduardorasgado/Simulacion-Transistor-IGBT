@@ -14,22 +14,29 @@ export function computeNu (re, Pr) {
     return 0.664 * Math.pow(re, medio) * Math.pow(Pr, tercio);
 }
 
-export function computeH() {
-
+export function computeH(k, l, nu) {
+    if(l !== 0) {
+        return (k * nu) / l;
+    }
+    return null;
 }
 
-export function computeQigbt() {
-
+export function computeQigbt(A, h, Ts, Tinf) {
+    return A * h * (Ts - Tinf);
 }
 
-export function computeMGlicol() {
-
+export function computeMGlicol(pGlicol, Qcaudal) {
+    return pGlicol * Qcaudal;
 }
 
-export function computeQDisipador() {
-
+export function computeQDisipador(mGlicol, CpGlicol, deltaTGlicol) {
+    return mGlicol * CpGlicol * deltaTGlicol;
 }
 
-export function computedT() {
-
+export function computedT(E1, E2, Qdisipador, Qigbt, m, Cp) {
+    let mCp = m * Cp;
+    if(mCp !== 0) {
+        return (E1 - E2 - Qdisipador - Qigbt) / mCp;
+    }
+    return null;
 }
