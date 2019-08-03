@@ -16,8 +16,18 @@ export default class Rectificador extends Component {
         this.setNewData = this.setNewData.bind(this);
     }
 
-    setNewData(data) {
-        alert("new data added");
+    setNewData(newData) {
+        // json deep copy
+        let copied = JSON.parse(JSON.stringify(newData));
+
+        var actualData = this.state.data;
+        actualData.push(copied);
+        this.setState({
+            data: actualData
+        });
+        alert("nuevos datos agregados");
+
+        console.log(this.state.data);
     }
     render() {
         return (

@@ -41,12 +41,14 @@ export default class RectForm extends Component {
 
     saveData(event) {
         event.preventDefault();
-        console.log(this.state.data);
+        this.props.setNewData(this.state.data);
     }
 
     updateData(target, value) {
         var dataUpdate = this.state.data;
-        dataUpdate[target] = value;
+        if(!isNaN(value)) {
+            dataUpdate[target] = value;
+        }
         this.setState({
             data: dataUpdate
         })
