@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table } from 'antd';
+import { Table, Popconfirm } from 'antd';
 import 'antd/dist/antd.css';
 
 export default class RectTable extends Component {
@@ -9,6 +9,10 @@ export default class RectTable extends Component {
         this.state = {
             
         }
+    }
+
+    handleDelete(key) {
+        this.props.deleteARecord(key);
     }
 
     columns = [
@@ -118,6 +122,16 @@ export default class RectTable extends Component {
             dataIndex: 'Cp',
             width: '4%',
             editable: true,
+          },
+          {
+            title: 'Accion',
+            dataIndex: '',
+            width: '4%',
+            key: 'x',
+            render: (text, record) =>
+            <Popconfirm title="Seguro?" onConfirm={() => this.handleDelete(record.key)}>
+              <a href="javascript:;">Borrar</a>
+            </Popconfirm>
           }
 
     ]

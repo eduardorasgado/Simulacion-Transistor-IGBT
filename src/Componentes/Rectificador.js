@@ -10,15 +10,21 @@ export default class Rectificador extends Component {
         super(props);
 
         this.state = {
+            count: 1,
             data: []
         };
 
         this.setNewData = this.setNewData.bind(this);
+        this.deleteARecord = this.deleteARecord.bind(this);
     }
 
     setNewData(newData) {
         // json deep copy
         let copied = JSON.parse(JSON.stringify(newData));
+        copied["key"] = this.state.count;
+        this.setState({
+            count: (this.state.count + 1)
+        });
 
         var actualData = this.state.data;
         actualData.push(copied);
@@ -28,6 +34,19 @@ export default class Rectificador extends Component {
         alert("nuevos datos agregados");
 
         console.log(this.state.data);
+    }
+
+    deleteARecord(key) {
+        var actualData = this.state.data;
+        actualData = actualData.filter((data) => {
+            if(data.key  !== key) {
+                return data
+            }
+        });
+
+        this.setState({
+            data: actualData
+        });
     }
     render() {
         return (
@@ -41,6 +60,7 @@ export default class Rectificador extends Component {
                <Divider>Tabla de datos</Divider>
                <RectTable
                 {...this.state}
+                deleteARecord={this.deleteARecord}
                ></RectTable>
 
                <Divider>Simulación actual</Divider>
