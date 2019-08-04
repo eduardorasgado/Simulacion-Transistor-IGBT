@@ -12,7 +12,8 @@ class App extends React.Component {
 
     this.state = {
       rectificadorTitle: "Simulación de Rectificador",
-      inversorTitle: "Simulación de Inversor"
+      inversorTitle: "Simulación de Inversor",
+      resistenciaTitle: "Simulación de Resistencia"
     }
   }
   render() {
@@ -28,15 +29,21 @@ class App extends React.Component {
             <TabPane tab="Rectificador" key="1" >
               <Rectificador
                 title={this.state.rectificadorTitle}
+                typeRect={0}
               ></Rectificador>
             </TabPane>
             <TabPane tab="Inversor" key="2" >
               <Rectificador
                 title={this.state.inversorTitle}
+                typeRect={0}
               ></Rectificador>
             </TabPane>
             <TabPane tab="Resistencia" key="3">
-              DOS MODOS, MANUAL Y LISTADO
+              <Rectificador
+                title={this.stateresistenciaTitle}
+                typeRect={1}
+              >
+              </Rectificador>
             </TabPane>
           </Tabs>
         }

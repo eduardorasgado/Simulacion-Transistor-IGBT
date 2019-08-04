@@ -72,15 +72,24 @@ export default class Rectificador extends Component {
             <div>
                <h1>{this.props.title}</h1>
                <Divider>Ingreso de nuevos datos</Divider>
-               <RectForm
-                setNewData={this.setNewData}
-               ></RectForm>
+               {this.props.typeRect === 0 ?
+                    <RectForm
+                        setNewData={this.setNewData}
+                    ></RectForm>
+                     :
+                     <h1>Resistencia</h1>
+
+                }
                
                <Divider>Tabla de datos</Divider>
-               <RectTable
-                {...this.state}
-                deleteARecord={this.deleteARecord}
-               ></RectTable>
+               {this.props.typeRect === 0 ?
+                    <RectTable
+                    {...this.state}
+                    deleteARecord={this.deleteARecord}
+                   ></RectTable>
+                   :
+                   <h1>Resistencia</h1>
+                }
 
                <Divider>Simulación actual</Divider>
                <Grafica
