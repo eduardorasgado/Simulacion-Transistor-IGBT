@@ -70,7 +70,7 @@ export default class Rectificador extends Component {
     render() {
         return (
             <div>
-               <h1>Simulación de rectificador</h1>
+               <h1>{this.props.title}</h1>
                <Divider>Ingreso de nuevos datos</Divider>
                <RectForm
                 setNewData={this.setNewData}

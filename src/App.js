@@ -6,6 +6,15 @@ import './App.css';
 const TabPane = Tabs.TabPane;
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      rectificadorTitle: "Simulación de Rectificador",
+      inversorTitle: "Simulación de Inversor"
+    }
+  }
   render() {
     return (
       <PageHeader className="App"
@@ -17,10 +26,14 @@ class App extends React.Component {
         footer={
           <Tabs defaultActiveKey="1">
             <TabPane tab="Rectificador" key="1" >
-              <Rectificador></Rectificador>
+              <Rectificador
+                title={this.state.rectificadorTitle}
+              ></Rectificador>
             </TabPane>
             <TabPane tab="Inversor" key="2" >
-              DOS MODOS EN INVERSOR, MANUAL LISTADO
+              <Rectificador
+                title={this.state.inversorTitle}
+              ></Rectificador>
             </TabPane>
             <TabPane tab="Resistencia" key="3">
               DOS MODOS, MANUAL Y LISTADO
