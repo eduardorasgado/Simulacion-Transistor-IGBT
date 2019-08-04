@@ -151,24 +151,12 @@ export default class RectForm extends Component {
     insertingAllFieldsFromCVSRow(event) {
         let newData = this.state.cvsRow.split(",");
         let oldData = this.state.data;
-        oldData.p = newData[0];
-        oldData.v = newData[1];
-        oldData.D = newData[2];
-        oldData.miu = newData[3];
-        oldData.Pr = newData[4];
-        oldData.k = newData[5];
-        oldData.l = newData[6];
-        oldData.A = newData[7];
-        oldData.Ts = newData[8];
-        oldData.Tinf = newData[9];
-        oldData.CpGlicol = newData[10];
-        oldData.deltaTGlicol = newData[11];
-        oldData.pGlicol = newData[12];
-        oldData.Qcaudal = newData[13];
-        oldData.E1 = newData[14];
-        oldData.E2 = newData[15];
-        oldData.m = newData[16];
-        oldData.Cp = newData[17];
+
+        Object.keys(oldData).forEach((key, index) => {
+            if(index <= 17){
+                oldData[key] = newData[index]
+            }
+        });
 
         this.setState({
             data: oldData
