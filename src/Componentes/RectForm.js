@@ -51,6 +51,7 @@ export default class RectForm extends Component {
         this.updateData = this.updateData.bind(this);
         this.updateCVSRow = this.updateCVSRow.bind(this);
         this.insertingAllFieldsFromCVSRow = this.insertingAllFieldsFromCVSRow.bind(this);
+        this.convertDataToCVSRow = this.convertDataToCVSRow.bind(this);
     }
 
     saveData(event) {
@@ -171,6 +172,25 @@ export default class RectForm extends Component {
 
         this.setState({
             data: oldData
+        });
+    }
+
+    /**
+     * Funcion que permite mapear los datos individuales de los campos y
+     * los junta en un string para devolverlos como fila de cvs
+     * @param {} event 
+     */
+    convertDataToCVSRow(event) {
+        //cvsRowFromFields
+        let values = [];
+        Object.keys(this.state.data).forEach((key, index) => {
+            if(index <= 17) {
+                values.push(this.state.data[key]);
+            }
+        });
+
+        this.setState({
+            cvsRowFromFields: values.join(",")
         });
     }
     
@@ -414,7 +434,9 @@ export default class RectForm extends Component {
                     </Col>
                     <Col span={1}></Col>
                     <Col span={1}>
-                        <Button>
+                        <Button
+                            onClick={(event) => this.convertDataToCVSRow(event)}
+                        >
                             Obtener en cvs
                         </Button>    
                     </Col>
