@@ -5,16 +5,19 @@ import {
     YAxis,
     HorizontalGridLines,
     VerticalGridLines,
-    LineSeries
+    LineSeries,
+    LineMarkSeries
   } from 'react-vis';
 
 export default class Grafica extends Component {
     
     render() {
         return (
-            <div style={{ margin: 'auto', marginBottom: 80, marginTop: 80, marginLeft:40 }}>
-                <XYPlot 
-                width={1000} height={500}
+            <div style={{ marginBottom: 80, marginTop: 80, marginLeft:40 }}>
+                <XYPlot
+                xDomain={[0, 100]}
+                yDomain={[0,100]} 
+                width={1000} height={600}
                 getX={d => d[0]}
                 getY={d => d[1]}
                 >
@@ -38,6 +41,7 @@ export default class Grafica extends Component {
                             ticks: {stroke: '#ADDDE1'},
                             text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
                           }}
+                        
                     >
                     </YAxis>
                     <LineSeries 
@@ -48,7 +52,18 @@ export default class Grafica extends Component {
                             fill: 'none',
                           }}
                     data={this.props.pairXYarray}/>
-                    <LineSeries className="second-series" data={null} />
+                    <LineMarkSeries
+                        className="linemark-series-example"
+                        style={{
+                          strokeWidth: '1.5px',
+                          fill: 'none',
+                        }}
+                        lineStyle={{stroke: 'red'}}
+                        markStyle={{stroke: 'blue', fill: 'blue'}}
+                        size={4}
+                        data={this.props.pairXYarray}
+                    ></LineMarkSeries>
+                    
                 </XYPlot>
             </div>
         )

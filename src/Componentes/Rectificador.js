@@ -58,7 +58,7 @@ export default class Rectificador extends Component {
 
     createNewXYArray() {
         let newXY = this.state.data.map((element, key) => {
-            return [element.dT, key] 
+            return [key+1, element.dT] 
         });
 
         this.setState({
