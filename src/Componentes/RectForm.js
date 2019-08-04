@@ -43,7 +43,8 @@ export default class RectForm extends Component {
                 dT: null
 
             },
-            cvsRow: ''
+            cvsRow: '',
+            cvsRowFromFields: ''
         }
 
         this.saveData = this.saveData.bind(this);
@@ -179,6 +180,7 @@ export default class RectForm extends Component {
            <div>
                <Form>
                 <p>Insertar por fila(cvs)</p>
+                <p>Usted pueden insertar filas a la tabla, por fila con formato cvs(comma separated values). Procurar no dejar espacios entre valores y comas.</p>
                     <Row>
                     <Col span={1}></Col>
                     <Col span={18}>
@@ -190,9 +192,9 @@ export default class RectForm extends Component {
                                     onChange={(event) => this.updateCVSRow(event)}
                                 />
                             </FormItem>
-                        </Col>
+                    </Col>
                     <Col span={2}>
-                        <Button type="primary" 
+                        <Button 
                             htmlType="submit"
                             onClick={(event) => this.insertingAllFieldsFromCVSRow(event)}
                             >
@@ -391,14 +393,34 @@ export default class RectForm extends Component {
                             <span className="ant-form-text"></span>
                         </FormItem>
                     </Col>
-                </Row> 
-
+                </Row>
                 <FormItem wrapperCol={{ span: 12, offset: 12 }}>
                     <Button type="primary" htmlType="submit">
-                        Ingresar
+                        Ingresar a tabla
                     </Button>
                 </FormItem>
+                <br></br>
+                <Row>
+                    <p>Con los valores proporcionados en los campos individuales usted puede obtener una fila para un archivo cvs.</p>
+                    <Col span={1}></Col>
+                    <Col span={16}>
+                        <FormItem>
+                            <Input 
+                                placeholder="ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), Cpglicol, ΔTglicol, ρglicol, Q(caudal), E1, E2, m, Cp" 
+                                name="all"
+                                value={this.state.cvsRowFromFields}
+                            />
+                        </FormItem>
+                    </Col>
+                    <Col span={1}></Col>
+                    <Col span={1}>
+                        <Button>
+                            Obtener en cvs
+                        </Button>    
+                    </Col>
+                </Row>
             </Form>
+            <br></br>
             <p>Previa de resultados: </p>
             <Tag color="blue">Re: {this.state.data.re}</Tag>
             <Tag color="blue">Nu: {this.state.data.nu}</Tag>
