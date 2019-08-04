@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import './Tab.css';
 import RectForm from './RectForm';
 import RectTable from './RectTable';
+import Grafica from './Grafica';
 
 export default class Rectificador extends Component {
     constructor (props) {
@@ -11,11 +12,13 @@ export default class Rectificador extends Component {
 
         this.state = {
             count: 1,
-            data: []
+            data: [],
+            pairXYarray: []
         };
 
         this.setNewData = this.setNewData.bind(this);
         this.deleteARecord = this.deleteARecord.bind(this);
+        this.createNewXYArray = this.createNewXYArray.bind(this);
     }
 
     setNewData(newData) {
@@ -34,6 +37,8 @@ export default class Rectificador extends Component {
         alert("nuevos datos agregados");
 
         console.log(this.state.data);
+
+        this.createNewXYArray();
     }
 
     deleteARecord(key) {
@@ -47,7 +52,21 @@ export default class Rectificador extends Component {
         this.setState({
             data: actualData
         });
+
+        this.createNewXYArray();
     }
+
+    createNewXYArray() {
+        let newXY = this.state.data.map((element, key) => {
+            return [element.dT, key] 
+        });
+
+        this.setState({
+            pairXYarray: newXY
+        });
+        console.log(this.state.pairXYarray);
+    }
+
     render() {
         return (
             <div>
@@ -64,7 +83,9 @@ export default class Rectificador extends Component {
                ></RectTable>
 
                <Divider>Simulación actual</Divider>
-               AQUI SE MUESTRA LA GRAFICA
+               <Grafica
+                {...this.state}
+               ></Grafica>
             </div>
         )
     }
