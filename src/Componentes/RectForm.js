@@ -49,6 +49,7 @@ export default class RectForm extends Component {
         this.saveData = this.saveData.bind(this);
         this.updateData = this.updateData.bind(this);
         this.updateCVSRow = this.updateCVSRow.bind(this);
+        this.insertingAllFieldsFromCVSRow = this.insertingAllFieldsFromCVSRow.bind(this);
     }
 
     saveData(event) {
@@ -139,26 +140,70 @@ export default class RectForm extends Component {
             });
         }, 2000);
     }
+
+    /**
+     * Funcion que permite mapear todos los datos del arreglo obtenido de
+     * el input cvs a el objeto data en el estado
+     * @param {} event 
+     */
+    insertingAllFieldsFromCVSRow(event) {
+        let newData = this.state.cvsRow.split(",");
+        let oldData = this.state.data;
+        oldData.p = newData[0];
+        oldData.v = newData[1];
+        oldData.D = newData[2];
+        oldData.miu = newData[3];
+        oldData.Pr = newData[4];
+        oldData.k = newData[5];
+        oldData.l = newData[6];
+        oldData.A = newData[7];
+        oldData.Ts = newData[8];
+        oldData.Tinf = newData[9];
+        oldData.CpGlicol = newData[10];
+        oldData.deltaTGlicol = newData[11];
+        oldData.pGlicol = newData[12];
+        oldData.Qcaudal = newData[13];
+        oldData.E1 = newData[14];
+        oldData.E2 = newData[15];
+        oldData.m = newData[16];
+        oldData.Cp = newData[17];
+
+        this.setState({
+            data: oldData
+        });
+    }
     
 
     render() {
         return (
            <div>
-               <Form onSubmit={(evnt) => this.saveData(evnt)}>
-               <p>Insertar por fila(cvs)</p>
-                <Row>
-                <Col span={2}></Col>
-                <Col span={8}>
-                        <FormItem>
-                            <Input 
-                                placeholder="ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), Cpglicol, ΔTglicol, ρglicol, Q(caudal), E1, E2, m, Cp" 
-                                name="all"
-                                value={this.state.cvsRow}
-                                onChange={(event) => this.updateCVSRow(event)}
-                            />
-                        </FormItem>
+               <Form>
+                <p>Insertar por fila(cvs)</p>
+                    <Row>
+                    <Col span={1}></Col>
+                    <Col span={18}>
+                            <FormItem>
+                                <Input 
+                                    placeholder="ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), Cpglicol, ΔTglicol, ρglicol, Q(caudal), E1, E2, m, Cp" 
+                                    name="all"
+                                    value={this.state.cvsRow}
+                                    onChange={(event) => this.updateCVSRow(event)}
+                                />
+                            </FormItem>
+                        </Col>
+                    <Col span={2}>
+                        <Button type="primary" 
+                            htmlType="submit"
+                            onClick={(event) => this.insertingAllFieldsFromCVSRow(event)}
+                            >
+                            Ingresar
+                        </Button>
                     </Col>
-                </Row>
+                    </Row>
+                    <br/>
+               </Form>
+               <Form onSubmit={(evnt) => this.saveData(evnt)}>
+               
                 <p>Insertar por campo</p>
                 <Row>
                     <Col span={4}>
