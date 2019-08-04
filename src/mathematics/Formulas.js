@@ -40,3 +40,17 @@ export function computedT(E1, E2, Qdisipador, Qigbt, m, Cp) {
     }
     return null;
 }
+
+// funciones extra para la simulacion de resistencia
+export function computeNuResistencia(Re, Pr) {
+    let tercio = 1 / 3;
+    return 0.027 * Math.pow(Re, 0.805) * Math.pow(Pr, tercio);
+}
+
+export function computedTResistencia(E1,Qigbt, Pd, m, Cp) {
+    let mCp = m * Cp;
+    if(mCp !== 0){
+        return (E1 - Qigbt - Pd) / mCp;
+    }
+    return null;
+}
