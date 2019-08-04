@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, InputNumber, Button, Row, Col, Tag} from 'antd';
+import { Form, InputNumber, Button, Row, Col, Tag, Input } from 'antd';
 import { computeRe, computeNu, computeH, computeQigbt, computeMGlicol, computeQDisipador, computedT } from '../mathematics/Formulas';
 import './Form.css';
 var FormItem = Form.Item;
@@ -42,11 +42,13 @@ export default class RectForm extends Component {
                 Qdis: null,
                 dT: null
 
-            }
+            },
+            cvsRow: ''
         }
 
         this.saveData = this.saveData.bind(this);
         this.updateData = this.updateData.bind(this);
+        this.updateCVSRow = this.updateCVSRow.bind(this);
     }
 
     saveData(event) {
@@ -62,6 +64,16 @@ export default class RectForm extends Component {
         this.setState({
             data: dataUpdate
         })
+    }
+
+    updateCVSRow(event) {
+        let target = event.target;
+        let inputName = target.name;
+        let value = target.value;
+
+        this.setState({
+            cvsRow: value
+        });
     }
 
     componentDidMount() {
@@ -128,11 +140,26 @@ export default class RectForm extends Component {
         }, 2000);
     }
     
-    
+
     render() {
         return (
            <div>
                <Form onSubmit={(evnt) => this.saveData(evnt)}>
+               <p>Insertar por fila(cvs)</p>
+                <Row>
+                <Col span={2}></Col>
+                <Col span={8}>
+                        <FormItem>
+                            <Input 
+                                placeholder="ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), Cpglicol, ΔTglicol, ρglicol, Q(caudal), E1, E2, m, Cp" 
+                                name="all"
+                                value={this.state.cvsRow}
+                                onChange={(event) => this.updateCVSRow(event)}
+                            />
+                        </FormItem>
+                    </Col>
+                </Row>
+                <p>Insertar por campo</p>
                 <Row>
                     <Col span={4}>
                         <FormItem label="ρ">
@@ -327,6 +354,7 @@ export default class RectForm extends Component {
                     </Button>
                 </FormItem>
             </Form>
+            <p>Previa de resultados: </p>
             <Tag color="blue">Re: {this.state.data.re}</Tag>
             <Tag color="blue">Nu: {this.state.data.nu}</Tag>
             <Tag color="blue">h: {this.state.data.h}</Tag>
