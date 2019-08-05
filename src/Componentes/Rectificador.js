@@ -69,16 +69,38 @@ export default class Rectificador extends Component {
     }
 
     render() {
+        const contentGuiaIngresar = (
+            <div>
+              <p style={{margin: 0}}>Los valores se van a colocar en sus respectivos campos al dar click</p>
+              <p style={{margin: 0}}>Esta operación no ingresa los datos a la tabla,</p>
+              <p style={{margin: 0}}>haga click en <Tag color="blue">ingresar a tabla</Tag>
+               después de esta operación para ello.</p>
+            </div>
+          );
+
+          const contentGuiaIngresarATabla = (
+            <div>
+              <p style={{margin: 0}}>Todos los valores deben ser asignados, así como µ debe ser distinto a cero para poder proceder.</p>
+              <p style={{margin: 0}}>Al dar click, se agrega una nueva fila a la tabla de la siguiente sección: <Tag color="red">Tabla de datos</Tag></p>
+              <p style={{margin: 0}}>Estos datos son acumulativos, cada click agrega una nueva fila a la tabla.</p>
+              <p>Nota: Al reiniciar la página se pierden tus datos almacenados.</p>
+            </div>
+          );
+
         return (
             <div>
                <h1>{this.props.title}</h1>
                <Divider>Ingreso de nuevos datos</Divider>
                {this.props.typeRect === 0 ?
                     <RectForm
+                        contentGuiaIngresar={contentGuiaIngresar}
+                        contentGuiaIngresarATabla={contentGuiaIngresarATabla}
                         setNewData={this.setNewData}
                     ></RectForm>
                      :
                      <ResForm
+                        contentGuiaIngresar={contentGuiaIngresar}
+                        contentGuiaIngresarATabla={contentGuiaIngresarATabla}
                         setNewData={this.setNewData}
                      ></ResForm>
 

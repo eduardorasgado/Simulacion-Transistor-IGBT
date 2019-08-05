@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, InputNumber, Button, Row, Col, Tag, Input } from 'antd';
+import { Form, InputNumber, Button, Row, Col, Tag, Input, Popover } from 'antd';
 import { computeRe, computeNu, computeH, computeQigbt, computeMGlicol, computeQDisipador, computedT } from '../mathematics/Formulas';
 import './Form.css';
 var FormItem = Form.Item;
@@ -211,12 +211,14 @@ export default class RectForm extends Component {
                             </FormItem>
                     </Col>
                     <Col span={2}>
-                        <Button 
-                            htmlType="submit"
-                            onClick={(event) => this.insertingAllFieldsFromCVSRow(event)}
-                            >
-                            Ingresar
-                        </Button>
+                        <Popover content={this.props.contentGuiaIngresar} title="Tu Guía">
+                            <Button 
+                                htmlType="submit"
+                                onClick={(event) => this.insertingAllFieldsFromCVSRow(event)}
+                                >
+                                Ingresar
+                            </Button>
+                        </Popover>
                     </Col>
                     </Row>
                     <br/>
@@ -412,9 +414,14 @@ export default class RectForm extends Component {
                     </Col>
                 </Row>
                 <FormItem wrapperCol={{ span: 12, offset: 12 }}>
-                    <Button type="primary" htmlType="submit">
-                        Ingresar a tabla
-                    </Button>
+                    <Popover content={this.props.contentGuiaIngresarATabla} title="Tu Guía">
+                        <Button type="primary" htmlType="submit"
+                            disabled={this.state.data.re == null ? true : false }
+                        >
+                            Ingresar a tabla
+                        </Button>
+                    </Popover>
+                    
                 </FormItem>
                 <br></br>
                 <Row>
