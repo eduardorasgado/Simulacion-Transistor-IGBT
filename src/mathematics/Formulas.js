@@ -47,10 +47,10 @@ export function computeNuResistencia(Re, Pr) {
     return 0.027 * Math.pow(Re, 0.805) * Math.pow(Pr, tercio);
 }
 
-export function computedTResistencia(E1,Qigbt, Pd, m, Cp) {
+export function computedTResistencia(E1,Qresistencia, Pd, m, Cp) {
     let mCp = m * Cp;
     if(mCp !== 0){
-        return (E1 - Qigbt - Pd) / mCp;
+        return (E1 - Qresistencia - Pd) / mCp;
     }
     return null;
 }

@@ -3,6 +3,7 @@ import { Tag, Divider, Table } from 'antd';
 import 'antd/dist/antd.css';
 import './Tab.css';
 import RectForm from './RectForm';
+import ResForm from './ResForm';
 import RectTable from './RectTable';
 import Grafica from './Grafica';
 
@@ -77,7 +78,9 @@ export default class Rectificador extends Component {
                         setNewData={this.setNewData}
                     ></RectForm>
                      :
-                     <h1>Resistencia</h1>
+                     <ResForm
+                        setNewData={this.setNewData}
+                     ></ResForm>
 
                 }
                
@@ -88,7 +91,7 @@ export default class Rectificador extends Component {
                     deleteARecord={this.deleteARecord}
                    ></RectTable>
                    :
-                   <h1>Resistencia</h1>
+                   <h1>ResistenciaTable</h1>
                 }
 
                <Divider>Simulación actual</Divider>
