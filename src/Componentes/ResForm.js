@@ -46,10 +46,13 @@ export default class RectForm extends Component {
         this.updateCVSRow = this.updateCVSRow.bind(this);
         this.insertingAllFieldsFromCVSRow = this.insertingAllFieldsFromCVSRow.bind(this);
         this.convertDataToCVSRow = this.convertDataToCVSRow.bind(this);
+        this.updateResults = this.updateResults.bind(this);
     }
 
     saveData(event) {
         event.preventDefault();
+        this.updateResults();
+        
         this.props.setNewData(this.state.data);
     }
 
@@ -75,55 +78,59 @@ export default class RectForm extends Component {
 
     componentDidMount() {
         setInterval(() => {
-            let reRes = computeRe(
-                this.state.data.p,
-                this.state.data.v,
-                this.state.data.D,
-                this.state.data.miu
-            );
-            let nuRes = computeNuResistencia(
-                reRes,
-                this.state.data.Pr
-            );
-            let hRes = computeH(
-                this.state.data.k,
-                this.state.data.l,
-                nuRes,
-
-            );
-            let qRes = computeQigbt(
-                this.state.data.A,
-                hRes,
-                this.state.data.Ts,
-                this.state.data.Tinf
-            );
-            
-            let dtRes = computedTResistencia(
-                this.state.data.E1,
-                this.state.data.Qresistencia,
-                this.state.data.Pd,
-                this.state.data.m,
-                this.state.data.Cp
-            );
-
-            let newData = this.state.data;
-            if(reRes !== null) {
-                newData.re = reRes.toFixed(2);
-            } else {
-                newData.re = reRes;
-            }
-            newData.nu = nuRes.toFixed(2);
-            newData.h = hRes.toFixed(2);
-            newData.Qresistencia = qRes.toFixed(2);
-            if(dtRes !== null) {
-                newData.dT = dtRes.toFixed(2);
-            } else {
-                newData.dT = dtRes;
-            }
-            this.setState({
-                data: newData
-            });
+            this.updateResults();
         }, 2000);
+    }
+
+    updateResults() {
+        let reRes = computeRe(
+            this.state.data.p,
+            this.state.data.v,
+            this.state.data.D,
+            this.state.data.miu
+        );
+        let nuRes = computeNuResistencia(
+            reRes,
+            this.state.data.Pr
+        );
+        let hRes = computeH(
+            this.state.data.k,
+            this.state.data.l,
+            nuRes,
+
+        );
+        let qRes = computeQigbt(
+            this.state.data.A,
+            hRes,
+            this.state.data.Ts,
+            this.state.data.Tinf
+        );
+        
+        let dtRes = computedTResistencia(
+            this.state.data.E1,
+            this.state.data.Qresistencia,
+            this.state.data.Pd,
+            this.state.data.m,
+            this.state.data.Cp
+        );
+
+        let newData = this.state.data;
+        if(reRes !== null) {
+            newData.re = reRes.toFixed(2);
+        } else {
+            newData.re = reRes;
+        }
+        newData.nu = nuRes.toFixed(2);
+        newData.h = hRes.toFixed(2);
+        newData.Qresistencia = qRes.toFixed(2);
+        if(dtRes !== null) {
+            newData.dT = dtRes.toFixed(2);
+        } else {
+            newData.dT = dtRes;
+        }
+        this.setState({
+            data: newData
+        });
     }
 
     /**

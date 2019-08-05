@@ -53,10 +53,14 @@ export default class RectForm extends Component {
         this.updateCVSRow = this.updateCVSRow.bind(this);
         this.insertingAllFieldsFromCVSRow = this.insertingAllFieldsFromCVSRow.bind(this);
         this.convertDataToCVSRow = this.convertDataToCVSRow.bind(this);
+        this.updateResuts = this.updateResuts.bind(this);
     }
 
     saveData(event) {
         event.preventDefault();
+        // antes de guardar en la tabla actualizams bien en dT
+        this.updateResuts();
+
         this.props.setNewData(this.state.data);
     }
 
@@ -82,66 +86,70 @@ export default class RectForm extends Component {
 
     componentDidMount() {
         setInterval(() => {
-            let reRes = computeRe(
-                this.state.data.p,
-                this.state.data.v,
-                this.state.data.D,
-                this.state.data.miu
-            );
-            let nuRes = computeNu(
-                reRes,
-                this.state.data.Pr
-            );
-            let hRes = computeH(
-                this.state.data.k,
-                this.state.data.l,
-                nuRes,
-
-            );
-            let qRes = computeQigbt(
-                this.state.data.A,
-                hRes,
-                this.state.data.Ts,
-                this.state.data.Tinf
-            );
-            let mgRes = computeMGlicol(
-                this.state.data.pGlicol,
-                this.state.data.Qcaudal
-            );
-            let qdisRes = computeQDisipador(
-                mgRes,
-                this.state.data.CpGlicol,
-                this.state.data.deltaTGlicol
-            );
-            let dtRes = computedT(
-                this.state.data.E1,
-                this.state.data.E2,
-                qdisRes,
-                this.state.data.Qigbt,
-                this.state.data.m,
-                this.state.data.Cp
-            );
-
-            let newData = this.state.data;
-            if(reRes !== null) {
-                newData.re = reRes.toFixed(2);
-            } else {
-                newData.re = reRes;
-            }
-            newData.nu = nuRes.toFixed(2);
-            newData.h = hRes.toFixed(2);
-            newData.Qigbt = qRes.toFixed(2);
-            newData.mGlicol = mgRes.toFixed(2);
-            newData.Qdis = qdisRes.toFixed(2);
-            if(dtRes !== null) {
-                newData.dT = dtRes.toFixed(2);
-            } else {
-                newData.dT = dtRes;
-            }
-            this.setState({
-                data: newData
-            });
+            this.updateResuts();
         }, 2000);
+    }
+
+    updateResuts() {
+        let reRes = computeRe(
+            this.state.data.p,
+            this.state.data.v,
+            this.state.data.D,
+            this.state.data.miu
+        );
+        let nuRes = computeNu(
+            reRes,
+            this.state.data.Pr
+        );
+        let hRes = computeH(
+            this.state.data.k,
+            this.state.data.l,
+            nuRes,
+
+        );
+        let qRes = computeQigbt(
+            this.state.data.A,
+            hRes,
+            this.state.data.Ts,
+            this.state.data.Tinf
+        );
+        let mgRes = computeMGlicol(
+            this.state.data.pGlicol,
+            this.state.data.Qcaudal
+        );
+        let qdisRes = computeQDisipador(
+            mgRes,
+            this.state.data.CpGlicol,
+            this.state.data.deltaTGlicol
+        );
+        let dtRes = computedT(
+            this.state.data.E1,
+            this.state.data.E2,
+            qdisRes,
+            this.state.data.Qigbt,
+            this.state.data.m,
+            this.state.data.Cp
+        );
+
+        let newData = this.state.data;
+        if(reRes !== null) {
+            newData.re = reRes.toFixed(2);
+        } else {
+            newData.re = reRes;
+        }
+        newData.nu = nuRes.toFixed(2);
+        newData.h = hRes.toFixed(2);
+        newData.Qigbt = qRes.toFixed(2);
+        newData.mGlicol = mgRes.toFixed(2);
+        newData.Qdis = qdisRes.toFixed(2);
+        if(dtRes !== null) {
+            newData.dT = dtRes.toFixed(2);
+        } else {
+            newData.dT = dtRes;
+        }
+        this.setState({
+            data: newData
+        });
     }
 
     /**
