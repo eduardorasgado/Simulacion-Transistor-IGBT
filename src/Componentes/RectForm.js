@@ -432,14 +432,14 @@ export default class RectForm extends Component {
                 </Row>
             </Form>
             <br></br>
-            <p>Previa de resultados: </p>
+            <p>Previa de resultados: (Los resultados son calculados automaticamente cuando introduce nuevos valores en los campos de registro)</p>
             <Tag color="blue">Re: {this.state.data.re}</Tag>
             <Tag color="blue">Nu: {this.state.data.nu}</Tag>
             <Tag color="blue">h: {this.state.data.h}</Tag>
             <Tag color="blue">Qigbt: {this.state.data.Qigbt}</Tag>
             <Tag color="blue">mGlicol: {this.state.data.mGlicol}</Tag>
             <Tag color="blue">Q(disipador): {this.state.data.Qdis}</Tag>
-            <Tag color="blue">dT/dt: {this.state.data.dT}</Tag>
+            <Tag color="green">dT/dt: {this.state.data.dT}</Tag>
            </div> 
         )
     }

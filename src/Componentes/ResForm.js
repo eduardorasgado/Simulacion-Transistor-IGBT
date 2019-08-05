@@ -225,7 +225,7 @@ export default class RectForm extends Component {
                                 value={this.state.data.D}
                                 onChange={(value) => this.updateData("D", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col> 
                     <Col span={4}>
@@ -279,7 +279,7 @@ export default class RectForm extends Component {
                                 value={this.state.data.A}
                                 onChange={(value) => this.updateData("A", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col>
                     <Col span={4}>
@@ -289,7 +289,7 @@ export default class RectForm extends Component {
                                 value={this.state.data.Ts}
                                 onChange={(value) => this.updateData("Ts", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col>
                     <Col span={4}>
@@ -299,7 +299,7 @@ export default class RectForm extends Component {
                                 value={this.state.data.Tinf}
                                 onChange={(value) => this.updateData("Tinf", value)}
                             />
-                            <span className="ant-form-text"></span>
+
                         </FormItem>
                     </Col>
                 </Row>
@@ -311,7 +311,7 @@ export default class RectForm extends Component {
                                 value={this.state.data.E1}
                                 onChange={(value) => this.updateData("E1", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col>
                     <Col span={4}>
@@ -321,7 +321,7 @@ export default class RectForm extends Component {
                                 value={this.state.data.Pd}
                                 onChange={(value) => this.updateData("Pd", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col>
 s                    <Col span={4}>
@@ -331,7 +331,7 @@ s                    <Col span={4}>
                                 value={this.state.data.m}
                                 onChange={(value) => this.updateData("m", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col>
                     <Col span={4}>
@@ -341,7 +341,7 @@ s                    <Col span={4}>
                                 value={this.state.data.Cp}
                                 onChange={(value) => this.updateData("Cp", value)}
                             />
-                            <span className="ant-form-text"></span>
+                            
                         </FormItem>
                     </Col>
                 </Row>
@@ -374,12 +374,12 @@ s                    <Col span={4}>
                 </Row>
             </Form>
             <br></br>
-            <p>Previa de resultados: </p>
+            <p>Previa de resultados: (Los resultados son calculados automaticamente cuando introduce nuevos valores en los campos de registro)</p>
             <Tag color="blue">Re: {this.state.data.re}</Tag>
             <Tag color="blue">Nu: {this.state.data.nu}</Tag>
             <Tag color="blue">h: {this.state.data.h}</Tag>
             <Tag color="blue">Q(resistencia): {this.state.data.Qresistencia}</Tag>
-            <Tag color="blue">dT/dt: {this.state.data.dT}</Tag>
+            <Tag color="green">dT/dt: {this.state.data.dT}</Tag>
            </div> 
         )
     }

@@ -8,6 +8,7 @@ import {
     LineSeries,
     LineMarkSeries
   } from 'react-vis';
+import { Input, Form, Row, Col } from 'antd';
 
 export default class Grafica extends Component {
     
@@ -18,13 +19,54 @@ export default class Grafica extends Component {
             xRangeRect: [0, 10],
             yRangeRect: [0, 20],
             xRangeRes: [0, 10],
-            yRangeRes: [0, 70]
+            yRangeRes: [0, 70],
+            ejeYLabel: "dT",
+            ejeXLabel: "Tiempo"
+        }
+
+        this.updateLabel = this.updateLabel.bind(this);
+    }
+
+    updateLabel(event) {
+        let target = event.target;
+        let inputName = target.name;
+        let value = target.value;
+
+        if(value !== null || value !== ''){
+            this.setState({
+                [inputName]: value
+            });
         }
     }
     render() {
         return (
             <div style={{ marginBottom: 80, marginTop: 80, marginLeft:40 }}>
-                
+                <Form>
+                    <Row>
+                        <Col span={3}>
+                        <Form.Item label="nombre del eje y:">
+                            <Input
+                                name="ejeYLabel"
+                                value={this.state.ejeYLabel}
+                                onChange={(event) => {this.updateLabel(event)}}
+                            >
+                            </Input>
+                        </Form.Item>
+                        </Col>
+                        <Col span={3}>
+                        <Form.Item label="nombre del eje x:">
+                            <Input
+                                name="ejeXLabel"
+                                value={this.state.ejeXLabel}
+                                onChange={(event) => {this.updateLabel(event)}}
+                            >
+                            </Input>
+                        </Form.Item>
+                        </Col>
+                    </Row>
+                </Form>
+                <br></br>
+                <br></br>
                 <XYPlot
                 xDomain={this.props.chartType ? this.state.xRangeRes : this.state.xRangeRect}
                 yDomain={this.props.chartType ? this.state.yRangeRes : this.state.yRangeRect} 
@@ -38,7 +80,7 @@ export default class Grafica extends Component {
                     <VerticalGridLines
                         style={{stroke: '#B7E9ED'}}
                     ></VerticalGridLines>
-                    <XAxis title="Tiempo"
+                    <XAxis title={this.state.ejeXLabel}
                         style={{
                             line: {stroke: '#ADDDE1'},
                             ticks: {stroke: '#ADDDE1'},
@@ -46,7 +88,7 @@ export default class Grafica extends Component {
                           }}
                     >
                     </XAxis>
-                    <YAxis title="dT"
+                    <YAxis title={this.state.ejeYLabel}
                         style={{
                             line: {stroke: '#ADDDE1'},
                             ticks: {stroke: '#ADDDE1'},
