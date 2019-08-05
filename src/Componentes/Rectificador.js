@@ -88,10 +88,16 @@ export default class Rectificador extends Component {
                {this.props.typeRect === 0 ?
                     <RectTable
                     {...this.state}
+                    tableType={this.props.typeRect}
                     deleteARecord={this.deleteARecord}
                    ></RectTable>
                    :
-                   <h1>ResistenciaTable</h1>
+                   <RectTable
+                    {...this.state}
+                    tableType={this.props.typeRect}
+                    deleteARecord={this.deleteARecord}
+                   >
+                   </RectTable>
                 }
 
                <Divider>Simulación actual</Divider>

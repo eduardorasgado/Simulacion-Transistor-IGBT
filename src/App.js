@@ -40,7 +40,7 @@ class App extends React.Component {
             </TabPane>
             <TabPane tab="Resistencia" key="3">
               <Rectificador
-                title={this.stateresistenciaTitle}
+                title={this.state.resistenciaTitle}
                 typeRect={1}
               >
               </Rectificador>

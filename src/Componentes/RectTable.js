@@ -15,7 +15,7 @@ export default class RectTable extends Component {
         this.props.deleteARecord(key);
     }
 
-    columns = [
+    RectColumns = [
         {
           title: 'ρ',
           dataIndex: 'p',
@@ -142,7 +142,7 @@ export default class RectTable extends Component {
             editable: true,
           },
           {
-            title: '(Qigbt)',
+            title: 'Q(igbt)',
             dataIndex: 'Qigbt',
             width: '4%',
             editable: true,
@@ -176,11 +176,140 @@ export default class RectTable extends Component {
             </Popconfirm>
           }
 
-    ]
+    ];
+
+    ResColumns = [
+      {
+        title: 'ρ',
+        dataIndex: 'p',
+        width: '4%',
+        editable: true,
+      },
+      {
+          title: 'v',
+          dataIndex: 'v',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'D',
+          dataIndex: 'D',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'µ',
+          dataIndex: 'miu',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Pr',
+          dataIndex: 'Pr',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'k',
+          dataIndex: 'k',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'l',
+          dataIndex: 'l',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'A',
+          dataIndex: 'A',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Ts',
+          dataIndex: 'Ts',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'T(inf)',
+          dataIndex: 'Tinf',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'E1',
+          dataIndex: 'E1',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Pd',
+          dataIndex: 'Pd',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'm',
+          dataIndex: 'm',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Cp',
+          dataIndex: 'Cp',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Re',
+          dataIndex: 're',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Nu',
+          dataIndex: 'nu',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'h',
+          dataIndex: 'h',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Q(resistencia)',
+          dataIndex: 'Qresistencia',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'dT/dt',
+          dataIndex: 'dT',
+          width: '4%',
+          editable: true,
+        },
+        {
+          title: 'Accion',
+          dataIndex: '',
+          width: '4%',
+          key: 'x',
+          render: (text, record) =>
+          <Popconfirm title="Seguro?" onConfirm={() => this.handleDelete(record.key)}>
+            <a href="javascript:;">Borrar</a>
+          </Popconfirm>
+        }
+    ];
     render() {
         return (
             <div>
-                <Table columns={this.columns} dataSource={this.props.data} scroll={{ x: 1800 }}/>
+                <Table columns={this.props.tableType ? 
+                  this.ResColumns :
+                  this.RectColumns} dataSource={this.props.data} scroll={{ x: 1800 }}/>
             </div>
         )
     }
