@@ -48,7 +48,7 @@ export function computeNuResistencia(Re, Pr) {
 }
 
 export function computedTResistencia(E1,Qresistencia, Pd, m, Cp) {
-    let mCp = m * Cp;
+    let mCp = 3 * m * Cp;
     if(mCp !== 0){
         return (E1 - Qresistencia - Pd) / mCp;
     }
