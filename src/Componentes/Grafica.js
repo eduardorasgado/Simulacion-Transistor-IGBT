@@ -11,12 +11,21 @@ import {
 
 export default class Grafica extends Component {
     
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            xHighLimit: [0, 10],
+            yhighLimit: [0, 20]
+        }
+    }
     render() {
         return (
             <div style={{ marginBottom: 80, marginTop: 80, marginLeft:40 }}>
+                
                 <XYPlot
-                xDomain={[0, 100]}
-                yDomain={[0,100]} 
+                xDomain={this.state.xHighLimit}
+                yDomain={this.state.yhighLimit} 
                 width={1000} height={600}
                 getX={d => d[0]}
                 getY={d => d[1]}
