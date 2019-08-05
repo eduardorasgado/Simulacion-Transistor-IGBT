@@ -22,15 +22,19 @@ export default class Grafica extends Component {
             yRangeRes: [0, 70],
             ejeYLabel: "dT",
             ejeXLabel: "Tiempo",
-            ySelected: 0
+            ySelected: 0,
+            xSelected: 0
         }
 
         this.updateLabel = this.updateLabel.bind(this);
+        this.updateXMax = this.updateXMax.bind(this);
+        this.updateYMax = this.updateYMax.bind(this);
     }
 
     componentDidMount() {
         this.setState({
-            ySelected: this.props.chartType ? this.state.yRangeRes[1] : this.state.yRangeRect[1]
+            ySelected: this.props.chartType ? this.state.yRangeRes[1] : this.state.yRangeRect[1],
+            xSelected: this.props.chartType ? this.state.xRangeRes[1] : this.state.xRangeRect[1]
         });
     }
 
@@ -67,6 +71,27 @@ export default class Grafica extends Component {
         }
     }
 
+    updateXMax(value) {
+        if(value !== null){
+            if(this.props.chartType){
+                // caso resistencia
+                let range = this.state.xRangeRes;
+                range[1] = value;
+                this.setState({
+                    xRangeRes: range
+                })
+            } else {
+                // caso rectificador/inversor
+                let range = this.state.xRangeRect;
+                range[1] = value;
+
+                this.setState({
+                    xRangeRect: range
+                });
+            }
+        }
+    }
+
     render() {
         return (
             <div style={{ marginBottom: 80, marginTop: 80, marginLeft:40 }}>
@@ -97,6 +122,15 @@ export default class Grafica extends Component {
                             <InputNumber                                
                                 value={this.state.ySelected}
                                 onChange={(value) => {this.updateYMax(value)}}
+                            >
+                            </InputNumber>
+                        </Form.Item>
+                        </Col>
+                        <Col span={3}>
+                        <Form.Item label="maximo del eje x:">
+                            <InputNumber                                
+                                value={this.state.xSelected}
+                                onChange={(value) => {this.updateXMax(value)}}
                             >
                             </InputNumber>
                         </Form.Item>
