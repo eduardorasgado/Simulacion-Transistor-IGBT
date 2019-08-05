@@ -324,7 +324,7 @@ export default class RectForm extends Component {
                             
                         </FormItem>
                     </Col>
-s                    <Col span={4}>
+                    <Col span={4}>
                         <FormItem label="m">
                             <InputNumber 
                                 name="m"

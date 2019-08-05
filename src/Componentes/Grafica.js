@@ -8,7 +8,7 @@ import {
     LineSeries,
     LineMarkSeries
   } from 'react-vis';
-import { Input, Form, Row, Col } from 'antd';
+import { Input, Form, Row, Col, InputNumber } from 'antd';
 
 export default class Grafica extends Component {
     
@@ -21,10 +21,17 @@ export default class Grafica extends Component {
             xRangeRes: [0, 10],
             yRangeRes: [0, 70],
             ejeYLabel: "dT",
-            ejeXLabel: "Tiempo"
+            ejeXLabel: "Tiempo",
+            ySelected: 0
         }
 
         this.updateLabel = this.updateLabel.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            ySelected: this.props.chartType ? this.state.yRangeRes[1] : this.state.yRangeRect[1]
+        });
     }
 
     updateLabel(event) {
@@ -32,12 +39,34 @@ export default class Grafica extends Component {
         let inputName = target.name;
         let value = target.value;
 
-        if(value !== null || value !== ''){
+        if(value !== null){
             this.setState({
                 [inputName]: value
             });
         }
     }
+
+    updateYMax(value) {
+        if(value !== null){
+            if(this.props.chartType){
+                // caso resistencia
+                let range = this.state.yRangeRes;
+                range[1] = value;
+                this.setState({
+                    yRangeRes: range
+                })
+            } else {
+                // caso rectificador/inversor
+                let range = this.state.yRangeRect;
+                range[1] = value;
+
+                this.setState({
+                    yRangeRect: range
+                });
+            }
+        }
+    }
+
     render() {
         return (
             <div style={{ marginBottom: 80, marginTop: 80, marginLeft:40 }}>
@@ -61,6 +90,15 @@ export default class Grafica extends Component {
                                 onChange={(event) => {this.updateLabel(event)}}
                             >
                             </Input>
+                        </Form.Item>
+                        </Col>
+                        <Col span={3}>
+                        <Form.Item label="maximo del eje y:">
+                            <InputNumber                                
+                                value={this.state.ySelected}
+                                onChange={(value) => {this.updateYMax(value)}}
+                            >
+                            </InputNumber>
                         </Form.Item>
                         </Col>
                     </Row>
