@@ -87,6 +87,14 @@ export default class Rectificador extends Component {
             </div>
           );
 
+          const contentGuiaObtenerCVS = (
+            <div>
+              <p style={{margin: 0}}>Procura tener todos los datos rellenos en tus campos de valores previo a esta acción.</p>
+              <p style={{margin: 0}}>Esto te ayudará a obtener una fila con formato CSV válida</p>
+              <p style={{margin: 0}}>Usa esta funcionalidad para crear un archivo CSV fila por fila como resultado de introducir datos en los campos de valores.</p>
+            </div>
+          );
+
         return (
             <div>
                <h1>{this.props.title}</h1>
@@ -95,12 +103,14 @@ export default class Rectificador extends Component {
                     <RectForm
                         contentGuiaIngresar={contentGuiaIngresar}
                         contentGuiaIngresarATabla={contentGuiaIngresarATabla}
+                        contentGuiaObtenerCVS={contentGuiaObtenerCVS}        
                         setNewData={this.setNewData}
                     ></RectForm>
                      :
                      <ResForm
                         contentGuiaIngresar={contentGuiaIngresar}
                         contentGuiaIngresarATabla={contentGuiaIngresarATabla}
+                        contentGuiaObtenerCVS={contentGuiaObtenerCVS}
                         setNewData={this.setNewData}
                      ></ResForm>
 

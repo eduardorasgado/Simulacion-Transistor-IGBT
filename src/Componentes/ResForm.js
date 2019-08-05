@@ -381,11 +381,13 @@ export default class RectForm extends Component {
                     </Col>
                     <Col span={1}></Col>
                     <Col span={1}>
-                        <Button
-                            onClick={(event) => this.convertDataToCVSRow(event)}
-                        >
-                            Obtener en cvs
-                        </Button>    
+                        <Popover content={this.props.contentGuiaObtenerCVS} title="Tu Guía">
+                            <Button
+                                onClick={(event) => this.convertDataToCVSRow(event)}
+                            >
+                                Obtener en cvs
+                            </Button>
+                        </Popover>  
                     </Col>
                 </Row>
             </Form>
