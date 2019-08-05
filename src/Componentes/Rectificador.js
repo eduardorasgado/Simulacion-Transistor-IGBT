@@ -102,6 +102,7 @@ export default class Rectificador extends Component {
 
                <Divider>Simulación actual</Divider>
                <Grafica
+                chartType={this.props.typeRect}
                 {...this.state}
                ></Grafica>
             </div>

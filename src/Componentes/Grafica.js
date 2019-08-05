@@ -15,8 +15,10 @@ export default class Grafica extends Component {
         super(props);
 
         this.state = {
-            xHighLimit: [0, 10],
-            yhighLimit: [0, 20]
+            xRangeRect: [0, 10],
+            yRangeRect: [0, 20],
+            xRangeRes: [0, 10],
+            yRangeRes: [0, 70]
         }
     }
     render() {
@@ -24,8 +26,8 @@ export default class Grafica extends Component {
             <div style={{ marginBottom: 80, marginTop: 80, marginLeft:40 }}>
                 
                 <XYPlot
-                xDomain={this.state.xHighLimit}
-                yDomain={this.state.yhighLimit} 
+                xDomain={this.props.chartType ? this.state.xRangeRes : this.state.xRangeRect}
+                yDomain={this.props.chartType ? this.state.yRangeRes : this.state.yRangeRect} 
                 width={1000} height={600}
                 getX={d => d[0]}
                 getY={d => d[1]}

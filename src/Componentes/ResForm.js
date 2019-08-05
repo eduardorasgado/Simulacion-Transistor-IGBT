@@ -37,7 +37,8 @@ export default class RectForm extends Component {
 
             },
             cvsRow: '',
-            cvsRowFromFields: ''
+            cvsRowFromFields: '',
+            cvsPlaceholder: "ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), E1, Pd, m, Cp"
         }
 
         this.saveData = this.saveData.bind(this);
@@ -176,7 +177,7 @@ export default class RectForm extends Component {
                     <Col span={18}>
                             <FormItem>
                                 <Input 
-                                    placeholder="ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), E1, Pd, m, Cp" 
+                                    placeholder={this.state.cvsPlaceholder}
                                     name="all"
                                     value={this.state.cvsRow}
                                     onChange={(event) => this.updateCVSRow(event)}
@@ -356,7 +357,7 @@ s                    <Col span={4}>
                     <Col span={16}>
                         <FormItem>
                             <Input 
-                                placeholder="ρ, v, D, µ, Pr, k, l, A, Ts, T(infinito), E1, Pd, m, Cp" 
+                                placeholder={this.state.cvsPlaceholder} 
                                 name="all"
                                 value={this.state.cvsRowFromFields}
                             />
