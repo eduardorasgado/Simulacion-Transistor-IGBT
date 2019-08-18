@@ -23,17 +23,20 @@ export default class Grafica extends Component {
             ejeYLabel: "dT",
             ejeXLabel: "Tiempo",
             ySelected: 0,
-            xSelected: 0
+            yMinSelected: 0,
+            xSelected: 0,
         }
 
         this.updateLabel = this.updateLabel.bind(this);
         this.updateXMax = this.updateXMax.bind(this);
         this.updateYMax = this.updateYMax.bind(this);
+        this.updateYMin = this.updateYMin.bind(this);
     }
 
     componentDidMount() {
         this.setState({
             ySelected: this.props.chartType ? this.state.yRangeRes[1] : this.state.yRangeRect[1],
+            yMinSelected: this.props.chartType ? this.state.yRangeRes[0] : this.state.yRangeRect[0],
             xSelected: this.props.chartType ? this.state.xRangeRes[1] : this.state.xRangeRect[1]
         });
     }
@@ -63,6 +66,27 @@ export default class Grafica extends Component {
                 // caso rectificador/inversor
                 let range = this.state.yRangeRect;
                 range[1] = value;
+
+                this.setState({
+                    yRangeRect: range
+                });
+            }
+        }
+    }
+
+    updateYMin(value) {
+        if(value !== null){
+            if(this.props.chartType){
+                // caso resistencia
+                let range = this.state.yRangeRes;
+                range[0] = value;
+                this.setState({
+                    yRangeRes: range
+                })
+            } else {
+                // caso rectificador/inversor
+                let range = this.state.yRangeRect;
+                range[0] = value;
 
                 this.setState({
                     yRangeRect: range
@@ -118,6 +142,15 @@ export default class Grafica extends Component {
                         </Form.Item>
                         </Col>
                         <Col span={3}>
+                        <Form.Item label="minimo del eje y:">
+                            <InputNumber                                
+                                value={this.state.yMinSelected}
+                                onChange={(value) => {this.updateYMin(value)}}
+                            >
+                            </InputNumber>
+                        </Form.Item>
+                        </Col>
+                        <Col span={3}>
                         <Form.Item label="maximo del eje y:">
                             <InputNumber                                
                                 value={this.state.ySelected}
@@ -153,6 +186,8 @@ export default class Grafica extends Component {
                         style={{stroke: '#B7E9ED'}}
                     ></VerticalGridLines>
                     <XAxis title={this.state.ejeXLabel}
+                        className="axes"
+                        position='middle'
                         style={{
                             line: {stroke: '#ADDDE1'},
                             ticks: {stroke: '#ADDDE1'},
@@ -161,6 +196,7 @@ export default class Grafica extends Component {
                     >
                     </XAxis>
                     <YAxis title={this.state.ejeYLabel}
+                        position='middle'
                         style={{
                             line: {stroke: '#ADDDE1'},
                             ticks: {stroke: '#ADDDE1'},
